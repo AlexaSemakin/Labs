@@ -22,7 +22,7 @@ class HashTableWidget : public QWidget
     Q_OBJECT
 public:
     explicit HashTableWidget ();
-
+    ~HashTableWidget();
 private slots:
     void addValue();
     void delValue();

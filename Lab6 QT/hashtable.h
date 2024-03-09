@@ -8,6 +8,9 @@ struct HashTableItem
     int m_key;
     int m_value;
     HashTableItem* nextItem = nullptr;
+    ~HashTableItem(){
+        delete nextItem;
+    }
 };
 
 class HashTable
@@ -34,9 +37,9 @@ public:
 
 private:
 
-    int size_table;
-    HashTableItem** m_items;
-    int m_count;
+    int size_table = 0;
+    HashTableItem** m_items = nullptr;
+    int m_count = 0;
 
     int InsertRoutine(int key, int value);
     int RemoveRoutine(int key);

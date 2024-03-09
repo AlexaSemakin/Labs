@@ -1,4 +1,5 @@
 #include "widget.h"
+#include "hashtable.h"
 
 #include <QApplication>
 

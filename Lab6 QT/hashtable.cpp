@@ -20,24 +20,40 @@ HashTable::HashTable(int tableSize)
     }
 }
 
-HashTable::HashTable(const HashTable& other)
+HashTable::HashTable(const HashTable& hashTable)
 {
-    size_table = other.size_table;
-    m_count = other.m_count;
-
+    size_table = hashTable.size_table;
+    m_count = hashTable.m_count;
     m_items = new HashTableItem * [size_table];
 
     for (int i = 0; i < size_table; i++)
     {
-        if (other.m_items[i] == nullptr)
+        if (hashTable.m_items[i] == nullptr)
         {
             m_items[i] = nullptr;
         }
         else
         {
             m_items[i] = new HashTableItem;
-            m_items[i]->m_key = other.m_items[i]->m_key;
-            m_items[i]->m_value = other.m_items[i]->m_value;
+            m_items[i]->m_key = hashTable.m_items[i]->m_key;
+            m_items[i]->m_value = hashTable.m_items[i]->m_value;
+
+            HashTableItem* el = hashTable.m_items[i]->nextItem;
+
+            if (el->nextItem){
+                m_items[i]->nextItem = new HashTableItem;
+            }
+
+            HashTableItem* el_this = m_items[i]->nextItem;
+
+            while(el){
+                el_this->nextItem = new HashTableItem;
+                el_this->m_key = el->m_key;
+                el_this->m_value = el->m_value;
+
+                el_this = el_this->nextItem;
+                el = el->nextItem;
+            }
         }
     }
 }

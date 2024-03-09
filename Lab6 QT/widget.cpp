@@ -24,13 +24,13 @@ HashTableWidget::HashTableWidget()
     subLayout->addWidget(inputLineAddValue);
     subLayout->addWidget(addButton);
     layout->addLayout(subLayout);
-    subLayout = new QHBoxLayout();
 
+    subLayout = new QHBoxLayout();
     subLayout->addWidget(inputLineDeleteKey);
     subLayout->addWidget(deleteButton);
-    layout->addLayout(subLayout);
+   layout->addLayout(subLayout);
 
-    hashTableElement = new QTableWidget();
+    hashTableElement = new QTableWidget(this);
     layout->addWidget(hashTableElement);
 
     hashTable = new HashTable(10);
@@ -40,6 +40,10 @@ HashTableWidget::HashTableWidget()
     hashTableElement->setRowCount(hashTable->GetSize());
     hashTableElement->setHorizontalHeaderLabels(QStringList() << "[Key, Value]");
  }
+HashTableWidget::~HashTableWidget(){
+    delete hashTable;
+}
+
 
 void HashTableWidget::addValue(){
     const int key = inputLineAddKey->text().toInt();

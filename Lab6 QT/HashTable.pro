@@ -11,16 +11,13 @@ CONFIG += c++17
 SOURCES += \
     hashtable.cpp \
     main.cpp \
-    mainwindow.cpp \
     widget.cpp
 
 HEADERS += \
     hashtable.h \
-    mainwindow.h \
     widget.h
 
-FORMS += \
-    mainwindow.ui
+FORMS +=
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
